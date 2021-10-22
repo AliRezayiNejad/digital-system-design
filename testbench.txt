@@ -1,0 +1,17 @@
+module detector1000_tester;
+reg  reset,clk,x;
+wire q;
+always@(clk)$monitor("%b",q);
+initial repeat(40)#50 clk=~clk;
+initial begin
+clk=0;
+reset=0;
+x=0;
+#100 reset=1;
+#200 x=1;
+#200 x=0;
+#300 x=1;
+end
+detector1000 uut(clk,reset,x,q);
+
+endmodule
